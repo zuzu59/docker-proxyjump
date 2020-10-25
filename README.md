@@ -1,6 +1,6 @@
 # docker-sshserver
 Petit bac à sable pour se faire un petit proxyjump ssh
-zf201025.1856
+zf201025.1901
 
 
 # Buts
@@ -54,7 +54,7 @@ Il faudra créer un tunnel ssh reverse montant, sur le Proxyjump, depuis la mach
 ### Création du tunnel ssh reverse montant
 Sur la machine cachée derrière le NAT:
 ```
-ssh -N -R 2022:localhost:22 toto@www.proxyjump.ml -p 2222
+ssh -N -R 2022:localhost:22 toto@machine_sur_internet -p 2222
 ```
 ATTENTION, rien ne sera affiché sur le terminal !
 
@@ -63,7 +63,7 @@ Pour arrêter le tunnel ssh reverse, simplement un CTRL+C
 ### Création du tunnel ssh forward descendant
 Sur sa machine:
 ```
-ssh -N -L 2022:localhost:2022 toto@www.proxyjump.ml -p 2222
+ssh -N -L 2022:localhost:2022 toto@machine_sur_internet -p 2222
 ```
 
 ATTENTION, rien ne sera affiché sur le terminal !
@@ -72,7 +72,7 @@ Pour arrêter le tunnel ssh reverse, simplement un CTRL+C
 
 Puis dans un autre terminal sur sa machine:
 ```
-ssh usermachinenat@localhost -p 2022
+ssh user_machine_nat@localhost -p 2022
 ```
 
 
