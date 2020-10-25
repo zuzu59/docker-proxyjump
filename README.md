@@ -1,16 +1,17 @@
-# docker-sshserver
+# docker-proxyjump
 Petit bac à sable pour se faire un petit proxyjump ssh
-zf201025.1902
+
+zf201025.1959
 
 
 # Buts
-Parfois, on aimerait pouvoir accéder à une machine Linux, depuis Internet, qui se trouve derrière un NAT sans devoir modifier la configuration du NAT.
+Parfois, on aimerait pouvoir accéder à une machine Linux, depuis Internet, qui se trouve *cachée* derrière un NAT sans devoir modifier la configuration du NAT.
 
-Ce petit proxyjump va nous permettre de le faire !
+Ce petit proxyjump va nous permettre de le faire facilement !
 
 
 # Problématiques
-On peut normalement facilement créer un tunnel *ssh reverse* sur une machine Linux qui se trouve sur Internet pour le faire, mais, des fois, on ne veut pas donner l'accès de cette machine à l'utilisateur de la machine Linux cachée derrière le NAT pour des raisons de sécurité !
+On peut normalement facilement créer un tunnel *ssh reverse* sur une machine Linux qui se trouve sur Internet pour le faire, mais des fois, on ne veut pas donner l'accès de cette machine à l'utilisateur de la machine Linux cachée derrière le NAT pour des raisons de sécurité !
 
 Ce petit serveur Proxyjump va nous permettre de *confiner* l'utilisateur dans un bac à sable utilisé seulement pour la création du tunnel *ssh reverse*.
 
@@ -49,18 +50,18 @@ On peut purger toute la partie Docker avec:
 
 
 ## Utilisation
-Il faudra créer un tunnel ssh reverse montant, sur le Proxyjump, depuis la machine cachée derrière le NAT, puis un autre tunnel descendant, depuis le Proxyjump, sur sa machine et enfin se connecter via en ssh sur le port local de sa machine qui est l'image de la machine cachée derrière le NAT !
+Il faudra créer un tunnel *ssh reverse montant*, sur le Proxyjump, depuis la machine *cachée* derrière le NAT, puis un autre tunnel *ssh forward descendant*, depuis le Proxyjump, sur sa machine et enfin se connecter via en ssh sur le port local (port du tunnel forward descendant) de sa machine qui est *l'image* de la machine *cachée* derrière le NAT !
 
-### Création du tunnel ssh reverse montant
-Sur la machine cachée derrière le NAT:
+### Création du tunnel *ssh reverse montant*
+Sur la machine *cachée* derrière le NAT:
 ```
 ssh -N -R 2022:localhost:22 toto@machine_sur_internet -p 2222
 ```
 ATTENTION, rien ne sera affiché sur le terminal !
 
-Pour arrêter le tunnel ssh reverse, simplement un CTRL+C
+Pour arrêter le tunnel *ssh reverse*, simplement un CTRL+C
 
-### Création du tunnel ssh forward descendant
+### Création du tunnel *ssh forward descendant*
 Sur sa machine:
 ```
 ssh -N -L 2022:localhost:2022 toto@machine_sur_internet -p 2222
@@ -68,12 +69,13 @@ ssh -N -L 2022:localhost:2022 toto@machine_sur_internet -p 2222
 
 ATTENTION, rien ne sera affiché sur le terminal !
 
-Pour arrêter le tunnel ssh reverse, simplement un CTRL+C
+Pour arrêter le tunnel *ssh reverse*, simplement un CTRL+C
 
 Puis dans un autre terminal sur sa machine:
 ```
 ssh user_machine_nat@localhost -p 2022
 ```
+On aura donc accès à la machine qui est *cachée* derrière le NAT !
 
 
 # source: 
