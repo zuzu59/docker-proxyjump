@@ -1,7 +1,7 @@
 # docker-proxyjump
 Petit bac à sable pour se faire un petit proxyjump ssh
 
-zf201025.2007
+zf201025.2008
 
 
 # Buts
@@ -64,10 +64,11 @@ ATTENTION, rien ne sera affiché sur le terminal !
 Pour arrêter le tunnel *ssh reverse*, simplement un CTRL+C
 
 ### Création du tunnel *ssh forward descendant*
-Sur sa machine:
+Dans un terminal sur sa machine:
 ```
 ssh -N -L 2022:localhost:2022 toto@machine_sur_internet -p 2222
 ```
+Le password est: tototutu
 
 ATTENTION, rien ne sera affiché sur le terminal !
 
@@ -80,7 +81,7 @@ ssh user_machine_nat@localhost -p 2022
 On aura donc accès à la machine qui est *cachée* derrière le NAT !
 
 
-# source: 
+# Source: 
 https://hub.docker.com/r/linuxserver/openssh-server<br>
 https://blog.linuxserver.io/2019/09/14/customizing-our-containers/
 
