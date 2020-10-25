@@ -1,6 +1,6 @@
 # docker-sshserver
 Petit bac à sable pour se faire un petit proxyjump ssh
-zf201025.1901
+zf201025.1902
 
 
 # Buts
@@ -77,6 +77,6 @@ ssh user_machine_nat@localhost -p 2022
 
 
 # source: 
-https://hub.docker.com/r/linuxserver/openssh-server
+https://hub.docker.com/r/linuxserver/openssh-server<br>
 https://blog.linuxserver.io/2019/09/14/customizing-our-containers/
 
