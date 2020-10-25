@@ -1,14 +1,17 @@
----
+#source: https://hub.docker.com/r/linuxserver/openssh-server
+#zf201025.1646
+
+
 version: "2.1"
 services:
-  openssh-server:
+  server:
     image: linuxserver/openssh-server
-    container_name: openssh-server
-    hostname: openssh-server #optional
+#    container_name: openssh-server
+    hostname: proxyjump #optional
     environment:
       - PUID=1000
       - PGID=1000
-      - TZ=Europe/London
+      - TZ=Europe/Paris
       - PUBLIC_KEY=yourpublickey #optional
       - PUBLIC_KEY_FILE=/path/to/file #optional
       - SUDO_ACCESS=false #optional
@@ -21,5 +24,6 @@ services:
     ports:
       - 2222:2222
     restart: unless-stopped
+
 
 
