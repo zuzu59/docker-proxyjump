@@ -1,7 +1,7 @@
 # docker-proxyjump
 Petit bac à sable pour se faire un petit proxyjump ssh
 
-zf201025.1959
+zf201025.2007
 
 
 # Buts
@@ -57,6 +57,8 @@ Sur la machine *cachée* derrière le NAT:
 ```
 ssh -N -R 2022:localhost:22 toto@machine_sur_internet -p 2222
 ```
+Le password est: tototutu
+
 ATTENTION, rien ne sera affiché sur le terminal !
 
 Pour arrêter le tunnel *ssh reverse*, simplement un CTRL+C
